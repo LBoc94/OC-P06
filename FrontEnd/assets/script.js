@@ -10,14 +10,13 @@ async function getWorks() {
 const gallery = document.querySelector(".gallery");
 
 async function generateGallery() {
-    const works = await getWorks()
+    await getWorks()
 
     works.forEach(works => {
         let work = document.createElement("figure")
-                 work.innerHTML += `<img src="${works.imageUrl}" alt="${works.title}">
-         		<figcaption>${works.title}</figcaption>`;
-                 gallery.appendChild(work);
+        work.innerHTML += `<img src="${works.imageUrl}" alt="${works.title}"><figcaption>${works.title}</figcaption>`;
+        gallery.appendChild(work);
     })
 }
-
 generateGallery()
+
