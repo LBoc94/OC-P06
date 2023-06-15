@@ -15,7 +15,6 @@ async function getWorks() {
 
 
 // AJOUTS TRAVAUX A LA GALLERIE
-
 async function generateGallery() {
     let works = await getWorks();
     const gallery = document.querySelector(".gallery");
@@ -28,17 +27,18 @@ async function generateGallery() {
 }
 generateGallery()
 
+
 // ---FILTRES---
-const filters = document.querySelector(".filters");
 
 async function generateFiltersBtns() {
     let works = await getWorks();
+    const filters = document.querySelector(".filters");
 
     // RECUPERATION DES NOMS DE CATEGORIES
     let categoryNameSet = new Set();
     for (let i = 0; i < works.length; i++) {
-        categoryNameSet.add("Tous")
-        categoryNameSet.add(works[i].category.name)
+        categoryNameSet.add("Tous");
+        categoryNameSet.add(works[i].category.name);
     }
     let categoryName = [...categoryNameSet];
 
