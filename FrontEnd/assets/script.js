@@ -1,16 +1,24 @@
 // RECUPERATION API
 async function getWorks() {
-    const reponseWorks = await fetch("http://localhost:5678/api/works");
-    works = await reponseWorks.json();
-    return works;
+    try {
+    const responseWorks = await fetch ("http://localhost:5678/api/works");
+    if (responseWorks.ok) {
+        const worksData = await responseWorks.json();
+        return worksData
+    } else {
+        console.error("Erreur HTTP: " + response.status)
+    }
+    } catch (error) {
+        console.error("Erreur lors de la récupération des données", error)
+    }
 }
 
 
 // AJOUTS TRAVAUX A LA GALLERIE
-const gallery = document.querySelector(".gallery");
 
 async function generateGallery() {
-    await getWorks();
+    let works = await getWorks();
+    const gallery = document.querySelector(".gallery");
 
     works.forEach(works => {
         let work = document.createElement("figure");
@@ -20,12 +28,11 @@ async function generateGallery() {
 }
 generateGallery()
 
-
 // ---FILTRES---
 const filters = document.querySelector(".filters");
 
 async function generateFiltersBtns() {
-    await getWorks();
+    let works = await getWorks();
 
     // RECUPERATION DES NOMS DE CATEGORIES
     let categoryNameSet = new Set();
