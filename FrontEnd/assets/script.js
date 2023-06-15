@@ -13,11 +13,11 @@ async function getWorks() {
     }
 }
 
+const gallery = document.querySelector(".gallery");
 
 // AJOUTS TRAVAUX A LA GALLERIE
 async function generateGallery() {
     let works = await getWorks();
-    const gallery = document.querySelector(".gallery");
 
     works.forEach(works => {
         let work = document.createElement("figure");
@@ -43,11 +43,34 @@ async function generateFiltersBtns() {
     let categoryName = [...categoryNameSet];
 
     // CREATION DES BOUTONS
-    for (let i = 0; i < categoryNameSet.size; i++) {
+    for (let i = 0; i < categoryName.length; i++) {
     let filterBtn = document.createElement("button");
     filters.appendChild(filterBtn);
     filterBtn.classList.add("filterbtn");
     filterBtn.textContent = categoryName[i];
+        console.log(categoryName)
+
+    filterBtn.addEventListener("click", (event) => {
+        console.log(works[2].category.name)
+        if (filterBtn.textContent === works[2].category.name) {
+            console.log("test")
+            
+            filterBtn.classList.add("filterbtnactive")
+            gallery.innerHTML = ""
+
+            }
+    })
     }
+
+    // let filterbtntest = document.querySelectorAll(".filterbtn");
+    // console.log(filterbtntest)
+
+    
+
 }
 generateFiltersBtns()
+
+
+async function testbtnfiltres() {
+// TRI DES CATEGORIES
+}
