@@ -13,9 +13,10 @@ async function getWorks() {
     }
 }
 
-const gallery = document.querySelector(".gallery");
 
 // AJOUTS TRAVAUX A LA GALLERIE
+const gallery = document.querySelector(".gallery");
+
 async function generateGallery() {
     let works = await getWorks();
 
@@ -28,12 +29,13 @@ async function generateGallery() {
 generateGallery()
 
 
+
 // ---FILTRES---
+const filters = document.querySelector(".filters");
 
-async function generateFiltersBtns() {
+async function generateFilters() {
     let works = await getWorks();
-    const filters = document.querySelector(".filters");
-
+    
     // RECUPERATION DES NOMS DE CATEGORIES
     let categoryNameSet = new Set();
     for (let i = 0; i < works.length; i++) {
@@ -47,30 +49,31 @@ async function generateFiltersBtns() {
     let filterBtn = document.createElement("button");
     filters.appendChild(filterBtn);
     filterBtn.classList.add("filterbtn");
+    filterBtn.setAttribute("id", categoryName[i]);
     filterBtn.textContent = categoryName[i];
-        console.log(categoryName)
-
-    filterBtn.addEventListener("click", (event) => {
-        console.log(works[2].category.name)
-        if (filterBtn.textContent === works[2].category.name) {
-            console.log("test")
-            
-            filterBtn.classList.add("filterbtnactive")
-            gallery.innerHTML = ""
-
-            }
-    })
-    }
-
-    // let filterbtntest = document.querySelectorAll(".filterbtn");
-    // console.log(filterbtntest)
-
     
 
-}
-generateFiltersBtns()
+    // GENERATION DES FILTRES
+    filterBtn.addEventListener("click", function(event){
+        const filteredWorks = works.filter(work => work.category.name === filterBtn.textContent)
 
-
-async function testbtnfiltres() {
-// TRI DES CATEGORIES
+        if (filterBtn.textContent === "Tous") {
+            gallery.innerHTML = ""
+            works.forEach(works => {
+                let work = document.createElement("figure");
+                work.innerHTML += `<img src="${works.imageUrl}" alt="${works.title}"><figcaption>${works.title}</figcaption>`;
+                gallery.appendChild(work);
+                })
+        } else {
+            gallery.innerHTML = ""
+            filteredWorks.forEach(works => {
+                let work = document.createElement("figure");
+                work.innerHTML += `<img src="${works.imageUrl}" alt="${works.title}"><figcaption>${works.title}</figcaption>`;
+                gallery.appendChild(work);
+            })}       
+                
+        filterBtn.classList.add("filterbtnactive")
+    })
+    }
 }
+generateFilters()
