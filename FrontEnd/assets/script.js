@@ -4,30 +4,34 @@ async function getWorks() {
     const responseWorks = await fetch ("http://localhost:5678/api/works");
     if (responseWorks.ok) {
         const worksData = await responseWorks.json();
-        return worksData
+        return worksData    
     } else {
         console.error("Erreur HTTP: " + response.status)
     }
     } catch (error) {
         console.error("Erreur lors de la récupération des données", error)
-    }
+    }        
 }
 
 
-// AJOUTS TRAVAUX A LA GALLERIE
+// ---GALLERY---
+// CREATION GALLERY
 const gallery = document.querySelector(".gallery");
 
-async function generateGallery() {
-    let works = await getWorks();
-
+function generateWorks(works) {
     works.forEach(works => {
         let work = document.createElement("figure");
         work.innerHTML += `<img src="${works.imageUrl}" alt="${works.title}"><figcaption>${works.title}</figcaption>`;
         gallery.appendChild(work);
     })
 }
-generateGallery()
 
+// AJOUT TRAVAUX GALLERY
+async function generateGallery() {
+    let works = await getWorks();
+        generateWorks(works);
+}
+generateGallery()
 
 
 // ---FILTRES---
@@ -51,28 +55,17 @@ async function generateFilters() {
     filterBtn.classList.add("filterbtn");
     filterBtn.setAttribute("id", categoryName[i]);
     filterBtn.textContent = categoryName[i];
-    
 
-    // GENERATION DES FILTRES
-    filterBtn.addEventListener("click", function(event){
+    // GENERATION DES FILTRES AU CLIC
+    filterBtn.addEventListener("click", function() {
         const filteredWorks = works.filter(work => work.category.name === filterBtn.textContent)
+        gallery.innerHTML = ""
 
         if (filterBtn.textContent === "Tous") {
-            gallery.innerHTML = ""
-            works.forEach(works => {
-                let work = document.createElement("figure");
-                work.innerHTML += `<img src="${works.imageUrl}" alt="${works.title}"><figcaption>${works.title}</figcaption>`;
-                gallery.appendChild(work);
-                })
+            generateWorks(works)
         } else {
-            gallery.innerHTML = ""
-            filteredWorks.forEach(works => {
-                let work = document.createElement("figure");
-                work.innerHTML += `<img src="${works.imageUrl}" alt="${works.title}"><figcaption>${works.title}</figcaption>`;
-                gallery.appendChild(work);
-            })}       
-                
-        filterBtn.classList.add("filterbtnactive")
+            generateWorks(filteredWorks)
+        }       
     })
     }
 }
