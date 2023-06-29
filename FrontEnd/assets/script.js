@@ -59,13 +59,16 @@ async function generateFilters() {
     // GENERATION DES FILTRES AU CLIC
     filterBtn.addEventListener("click", function() {
         const filteredWorks = works.filter(work => work.category.name === filterBtn.textContent)
-        gallery.innerHTML = ""
 
+        gallery.innerHTML = ""
         if (filterBtn.textContent === "Tous") {
             generateWorks(works)
         } else {
             generateWorks(filteredWorks)
         }       
+        
+        
+        // filterBtn.classList.add("filterbtnactive")
     })
     }
 }
