@@ -8,9 +8,10 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
+	<script src="https://kit.fontawesome.com/8e51572be2.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="./assets/style.css">
-	<script defer src="./assets/script.js"></script>
 	<script defer src="./assets/login.js"></script>
+	<script defer src="./assets/script.js"></script>
 </head>
 <body>
 <header>
@@ -19,7 +20,7 @@
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<li><a href="login.html">login</a></li>
+			<li><a href="login.html" id="headerlogin">login</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -57,6 +58,30 @@
 		</form>
 	</section>
 </main>
+
+
+<!-- MODALE -->
+<aside id="modal" class="modal displaynone" role="dialog">
+
+	<div class="modal-wrapper">
+
+		<div class="modal-header">
+		<i class="fa-solid fa-arrow-left icon"></i>
+		<i class="fa-solid fa-xmark icon"></i>
+		</div>
+
+		<div class="modal-content">
+		<h3 class="modal-title">Galerie photo</h3>
+		<div id="modal-gallery"></div>
+		<hr>
+		<button class="filterbtn filterbtnactive">Ajouter une photo</button>
+		<p class="delete-txt">Supprimer la galerie</p>
+		</div>
+
+	</div>
+</aside>
+<!-- FIN MODALE -->
+
 
 <footer>
 	<nav>
