@@ -225,6 +225,28 @@ nav a {
 }
 
 /* MODAL */
+.modal-header {
+	position: fixed;
+	width: 100%;
+	height: 60px;
+	top: 0;
+	left: 0;
+	background-color: black;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+    justify-content: center;
+}
+
+.fa-pen-to-square {
+	color: white;
+    font-size: 15px;
+}
+
+.modal-header p {
+	color: white
+}
+
 .modal {
 	position: fixed;
 	top: 0;
@@ -246,7 +268,7 @@ nav a {
 	background-color: white;
 }
 
-.modal-header {
+.modal-icons {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;

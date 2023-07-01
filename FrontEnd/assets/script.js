@@ -1,3 +1,5 @@
+const storedToken = localStorage.token
+
 // RECUPERATION API
 async function getWorks() {
     try {
@@ -78,11 +80,11 @@ generateFilters()
 
 // const storedToken = localStorage.getItem("token");
 // console.log(storedToken)
-// const logout = document.getElementById("headerlogin")
+const logout = document.getElementById("headerlogin")
 
-// if (storedToken) {
-//     logout.innerText = "logout"
-// }
+if (storedToken) {
+     logout.innerText = "logout"
+}
 
 // // LOGING OUT
 // if (logout.innerText === "logout") {

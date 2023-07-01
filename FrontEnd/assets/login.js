@@ -21,12 +21,11 @@ async function submitForm(event) {
         });
         const responseData = await response.json();
 
-    // REPONSE STATUT SERVEUR OK
+    // REPONSE STATUT OK
         if (response.status === 200) {
             const token = responseData.token;
             localStorage.setItem("token", token);
-            window.location.href = "./index.html";
-            return token
+            return window.location.href = "./index.html";
 
     // REPONSE STATUT ERREURS
         } else if (response.status === 401) {
