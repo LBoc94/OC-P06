@@ -20,18 +20,37 @@ async function submitForm(event) {
         const responseData = await response.json();
 
     // REPONSE STATUT SERVEUR OK
-      if (response.status === 200) {
-        const token = responseData.token;
-        window.localStorage.setItem("token", token);
-        window.location.href = "./index.html";
+        if (response.status === 200) {
+            const token = responseData.token;
+            localStorage.setItem("token", token);
+            window.location.href = "./index.html";
+            return token
 
     // REPONSE STATUT ERREURS
-      } else if (response.status === 401 || 404) {
-        alert("E-mail ou mot de passe incorrect.");
-      }
+        } else if (response.status === 401) {
+            alert("E-mail ou mot de passe incorrect.");
+        } else if (response.status === 404) {
+            alert("Utilisateur non trouvé.");
+        }
 
     // CATCH ERREURS
     } catch (error) {
-      alert("Une erreur est survenue lors de la connexion.<br>Veuillez réessayer.");
+      alert("Une erreur est survenue lors de la connexion. Veuillez réessayer.");
     }
-};
+}
+
+ const storedToken = localStorage.getItem("token");
+ const logout = document.getElementById("headerlogin")
+
+// if (storedToken) {
+//     logout.innerText = "logout"
+// }
+
+// // LOGING OUT
+// if (logout.innerText === "logout") {
+//     logout.addEventListener("click", () => {
+//         localStorage.removeItem("token")
+//         window.location.href = "./index.html";
+//     })
+// }
+ console.log(storedToken)

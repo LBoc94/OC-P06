@@ -73,3 +73,21 @@ async function generateFilters() {
     }
 }
 generateFilters()
+
+
+
+// const storedToken = localStorage.getItem("token");
+// console.log(storedToken)
+// const logout = document.getElementById("headerlogin")
+
+// if (storedToken) {
+//     logout.innerText = "logout"
+// }
+
+// // LOGING OUT
+// if (logout.innerText === "logout") {
+//     logout.addEventListener("click", () => {
+//         localStorage.removeItem("token")
+//         window.location.href = "./index.html";
+//     })
+// }
