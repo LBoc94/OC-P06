@@ -1,6 +1,8 @@
 const form = document.querySelector("form");
 const email = document.getElementById("email")
 const password = document.getElementById("password")
+const storedToken = localStorage.token
+
 form.addEventListener("submit", submitForm);
 
 async function submitForm(event) {
@@ -40,18 +42,16 @@ async function submitForm(event) {
     }
 }
 
- const storedToken = localStorage.getItem("token");
- const logout = document.getElementById("headerlogin")
+const logout = document.getElementById("headerlogin")
 
-// if (storedToken) {
-//     logout.innerText = "logout"
-// }
+if (storedToken) {
+     logout.innerText = "logout"
+}
 
-// // LOGING OUT
-// if (logout.innerText === "logout") {
-//     logout.addEventListener("click", () => {
-//         localStorage.removeItem("token")
-//         window.location.href = "./index.html";
-//     })
-// }
- console.log(storedToken)
+// LOGING OUT
+if (logout.innerText === "logout") {
+    logout.addEventListener("click", () => {
+        localStorage.removeItem("token")
+        window.location.href = "./index.html";
+    })
+}

@@ -11,15 +11,20 @@
 	<script src="https://kit.fontawesome.com/8e51572be2.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="./assets/style.css">
 	<script defer src="./assets/script.js"></script>
+	<script defer src="./assets/modal.js"></script>
 </head>
 <body>
-<header>
-	<div class="modal-header displaynone">
+
+	<!-- HEADER MODALE -->
+	<div id="modal-header" class="displaynone">
 		<i class="fa-regular fa-pen-to-square"></i>
 		<p>Mode édition</p>
-		<button>publier les changements</button>
+		<button class="headerbtn">publier les changements</button>
 	</div>
+<header>
 
+
+	<div class="base-header">
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
@@ -28,7 +33,7 @@
 			<li><a href="login.html" id="headerlogin">login</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
-	</nav>
+	</nav></div>
 </header>
 <main>
 	<section id="introduction">
@@ -43,7 +48,7 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<h2 id="project-title">Mes Projets</h2>
 		<div class="filters">
 		</div>
 		<div class="gallery">
