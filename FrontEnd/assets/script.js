@@ -69,7 +69,6 @@ async function generateFilters() {
             generateWorks(filteredWorks)
         }       
         
-        
         // filterBtn.classList.add("filterbtnactive")
     })
     }

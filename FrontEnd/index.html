@@ -49,6 +49,7 @@
 	</section>
 	<section id="portfolio">
 		<h2 id="project-title">Mes Projets</h2>
+		<div id="projects-modif"></div>
 		<div class="filters">
 		</div>
 		<div class="gallery">
@@ -72,12 +73,12 @@
 
 <!-- MODALE -->
 <aside id="modal" class="modal displaynone" role="dialog">
+	<div class="modal-overlay"></div>
 
 	<div class="modal-wrapper">
-
 		<div class="modal-icons">
 		<i class="fa-solid fa-arrow-left icon"></i>
-		<i class="fa-solid fa-xmark icon"></i>
+		<i class="fa-solid fa-xmark icon" id="close-modal"></i>
 		</div>
 
 		<div class="modal-content">
@@ -87,7 +88,6 @@
 		<button class="filterbtn filterbtnactive">Ajouter une photo</button>
 		<p class="delete-txt">Supprimer la galerie</p>
 		</div>
-
 	</div>
 </aside>
 <!-- FIN MODALE -->
