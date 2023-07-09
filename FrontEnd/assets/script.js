@@ -35,6 +35,22 @@ async function generateGallery() {
 }
 generateGallery()
 
+///////
+// function generateWorksmodaletest(works) {
+//     works.forEach(works => {
+//         let work = document.createElement("figure");
+//         work.innerHTML += `<img src="${works.imageUrl}"`;
+//         gallerymodal.appendChild(work);
+//     })
+// }
+
+
+// async function testgalmod() {
+//     let works = await getWorks();
+//     generateWorksmodaletest(works)
+// }
+// generateWorksmodaletest()
+/////
 
 // ---FILTRES---
 const filters = document.querySelector(".filters");

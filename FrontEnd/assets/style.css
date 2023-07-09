@@ -290,11 +290,12 @@ nav a {
 }
 
 .modal-wrapper {
-	/* overflow: auto; */
+	overflow: auto;
 	position: absolute;
+	top: 15%;
 	width: 60%;
 	border-radius: 10px;
-	/* max-width: ; */
+	max-height: 75%;
 	padding: 20px;
 	background-color: white;
 }
@@ -333,6 +334,45 @@ hr {
 	font-size: 12px;
 	margin-top: -15px;
 }
+
+
+#modal-gallery {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	column-gap: 10px;
+	row-gap: 15px;
+}
+
+#modal-gallery figure {
+	position: relative;
+}
+
+#modal-gallery img {
+	object-fit: cover;
+	height: 170px;
+	width: 100%;
+}
+
+#modal-gallery button {
+	position: absolute;
+    top: 5px;
+    right: 5px;
+	color: white;
+	background-color: black;
+	border-radius: 2px;
+	border-style: none;
+	height: 22px;
+    width: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#modal-gallery .boutonDeplacement {
+	right: 32px;
+}
+
 
 .displaynone {
 	display: none !important;
