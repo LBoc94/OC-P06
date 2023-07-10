@@ -50,40 +50,14 @@ function generateWorksModal(worksModal) {
         figureModal.id = "figureModal" + workModal.id;
         galleryModal.appendChild(figureModal);
 
-        const imageModal = document.createElement("img");
-        imageModal.src = workModal.imageUrl;
-        figureModal.appendChild(imageModal);
-
-        const figModalcaption = document.createElement("figcaption");
-        figModalcaption.innerText = "éditer";
-        figureModal.appendChild(figModalcaption);
-
-
-        const boutonDeplacement = document.createElement("button");
-        boutonDeplacement.className = "boutonDeplacement";
-        boutonDeplacement.id = i + 1;
-        figureModal.appendChild(boutonDeplacement);
-
-        const iconDeplacement = document.createElement("i");
-        iconDeplacement.className = "fa-solid fa-arrows-up-down-left-right";
-        boutonDeplacement.appendChild(iconDeplacement);
-    
-        // Création du bouton suppression dans la figure de la modale  
-        const suppression = document.createElement("button");
-        suppression.className = "boutonSuppression";
-        //suppression.id = projet.id
-        suppression.type = "submit";
-        figureModal.appendChild(suppression);
-
-        const iconSuppression = document.createElement("i");
-        iconSuppression.className = "fa-solid fa-trash-can";
-        //iconSuppression.src = "assets/icons/trash-can-solid.svg"
-        suppression.appendChild(iconSuppression);
-
-        console.log(figureModal.id)
+        figureModal.innerHTML += `<img src="${workModal.imageUrl}">
+        <figcaption>éditer</figcaption>
+        <button class="boutonDeplacement"><i class="fa-solid fa-arrows-up-down-left-right"></i></button>
+        <button class="boutonSuppression" type="submit"><i class="fa-solid fa-trash-can"></i></button>`
     })
 
 }
+
 
 async function generateGalleryModal() {
     // galleryModal.innerHTML=""
