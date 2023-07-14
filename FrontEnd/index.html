@@ -77,16 +77,41 @@
 
 	<div class="modal-wrapper">
 		<div class="modal-icons">
-		<i class="fa-solid fa-arrow-left icon"></i>
-		<i class="fa-solid fa-xmark icon" id="close-modal"></i>
+			<i class="fa-solid fa-arrow-left icon"></i>
+			<i class="fa-solid fa-xmark icon" id="close-modal"></i>
 		</div>
 
-		<div class="modal-content">
-		<h3 class="modal-title">Galerie photo</h3>
-		<div id="modal-gallery"></div>
-		<hr>
-		<button class="filterbtn filterbtnactive">Ajouter une photo</button>
-		<p class="delete-txt">Supprimer la galerie</p>
+		<div class="modal-content-gallery displaynone">
+			<h3 class="modal-title">Galerie photo</h3>
+			<div id="modal-gallery"></div>
+			<hr>
+			<button class="filterbtn filterbtnactive">Ajouter une photo</button>
+			<p class="delete-txt">Supprimer la galerie</p>
+		</div>
+
+		<div class="modal-content-form">
+			<h3 class="modal-title">Ajout photo</h3>
+			<div class="mod-add-block">
+				<i class="fa-regular fa-image"></i>
+
+				<!-- <label for="fileInput" class="filterbtn add-btn">+ Ajouter photo</label>
+				<input type="file" name="fileInput" id="fileInput"> -->
+
+				<button class="filterbtn add-btn">+ Ajouter photo</button>
+				<p>jpg, png : 4mo max</p>
+			</div>
+
+			<form action="#" method="post" class="mod-add-form">
+				<label for="title">Titre</label>
+				<input type="text" name="title" id="title">
+
+				<label for="category">Catégorie</label>
+				<select name="category" id="category">
+				</select>
+
+				<hr>
+				<input type="submit" value="Valider" id="mod-submit">
+			</form>
 		</div>
 	</div>
 </div>

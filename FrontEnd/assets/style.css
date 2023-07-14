@@ -167,7 +167,7 @@ margin: auto;
 #contact label, #login label {
 	margin: 2em 0 1em 0;
 }
-#contact textarea, #login textarea {
+#contact textarea, #login textarea, .mod-add-form input, .mod-add-form select {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
@@ -316,7 +316,7 @@ nav a {
 	margin-bottom: 45px;
 }
 
-.modal-content {
+.modal-content-gallery {
 	display: flex;
 	flex-direction: column;
     align-items: center;
@@ -369,8 +369,62 @@ hr {
     justify-content: center;
 }
 
-#modal-gallery .boutonDeplacement {
+#modal-gallery .moveBtn {
 	right: 32px;
+}
+
+.modal-content-form {
+	margin: 0 10% 20px 10%;
+}
+
+.modal-content-form > .modal-title {
+	text-align: center;
+}
+
+.mod-add-block {
+	background-color: #E8F1F6;
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-bottom: 15px;
+}
+
+.fa-image {
+	font-size: 100px;
+	color: #B9C5CC;
+}
+
+.add-btn {
+	background-color: #CBD6DC;
+	color: #306685;
+	border: none;
+	margin: 1.5em 0 0.7em 0;
+}
+
+.mod-add-block > p {
+	font-size: 10px;
+}
+
+.mod-add-form {
+	display: flex;
+	flex-direction: column;
+    align-items: stretch;
+	gap: 10px;
+}
+
+.mod-add-form label {
+	margin-top: 20px;
+}
+
+.mod-add-form input, select {
+	height: 50px;
+}
+
+.mod-add-form > hr {
+	margin-top: 50px;
+	margin-bottom: 10px;
 }
 
 
