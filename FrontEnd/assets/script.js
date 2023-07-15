@@ -8,7 +8,7 @@ async function getWorks() {
         const worksData = await responseWorks.json();
         return worksData    
     } else {
-        console.error("Erreur HTTP: " + response.status)
+        console.error("Erreur HTTP: " + responseWorks.status)
     }
     } catch (error) {
         console.error("Erreur lors de la récupération des données", error)
@@ -31,7 +31,7 @@ function generateWorks(works) {
 // AJOUT TRAVAUX GALLERY
 async function generateGallery() {
     let works = await getWorks();
-        generateWorks(works);
+    generateWorks(works);
 }
 generateGallery()
 

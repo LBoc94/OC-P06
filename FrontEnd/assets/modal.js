@@ -138,12 +138,41 @@ async function deletetest3(worksModal, workId) {
 
 //----- ADD -----//
 
-//<option value="">--Please choose an option--</option>
-//<option value="dog">Dog</option>
-
 function addModal() {
     modalGallery.classList.add("displaynone")
     modalAddForm.classList.remove("displaynone")
     modalBackBtn.classList.add("displaynone")
 }
 
+
+// AFFICHAGE CATEGORIES DEROULANT
+async function getCategories() {
+    try {
+    const responseCats = await fetch ("http://localhost:5678/api/categories");
+    if (responseCats.ok) {
+        const catsData = await responseCats.json();
+        return catsData    
+    } else {
+        console.error("Erreur HTTP: " + responseCats.status)
+    }
+    } catch (error) {
+        console.error("Erreur lors de la récupération des données", error)
+    }        
+}
+
+async function addCategories() {
+    let categories = await getCategories()
+    testcat(categories)
+}
+addCategories()
+
+function testcat(categories) {
+    const catsForm = document.getElementById("category")
+
+    categories.forEach(categories => {
+        let cat = document.createElement("option");
+        cat.value = "${categories.name}";
+        cat.innerText = `${categories.name}`;
+        catsForm.appendChild(cat);;
+    })
+}
