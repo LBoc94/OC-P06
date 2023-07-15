@@ -301,14 +301,19 @@ nav a {
 }
 
 .modal-icons {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 	margin-bottom: 10px;
+	cursor: pointer;
 }
 
 .icon {
 	font-size: 17px;
+}
+
+#close-modal {
+	justify-self: end;
+    grid-column-start: 2;
 }
 
 .modal-title {
@@ -316,7 +321,7 @@ nav a {
 	margin-bottom: 45px;
 }
 
-.modal-content-gallery {
+#modal-content-gallery {
 	display: flex;
 	flex-direction: column;
     align-items: center;
@@ -373,11 +378,11 @@ hr {
 	right: 32px;
 }
 
-.modal-content-form {
+#modal-content-form {
 	margin: 0 10% 20px 10%;
 }
 
-.modal-content-form > .modal-title {
+#modal-content-form > .modal-title {
 	text-align: center;
 }
 
@@ -425,6 +430,10 @@ hr {
 .mod-add-form > hr {
 	margin-top: 50px;
 	margin-bottom: 10px;
+}
+
+#mod-submit {
+	background-color: #A7A7A7;
 }
 
 

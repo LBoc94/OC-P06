@@ -77,19 +77,20 @@
 
 	<div class="modal-wrapper">
 		<div class="modal-icons">
-			<i class="fa-solid fa-arrow-left icon"></i>
+			<i class="fa-solid fa-arrow-left icon displaynone" id="back-modal"></i>
 			<i class="fa-solid fa-xmark icon" id="close-modal"></i>
 		</div>
 
-		<div class="modal-content-gallery displaynone">
+		<div id="modal-content-gallery">
 			<h3 class="modal-title">Galerie photo</h3>
 			<div id="modal-gallery"></div>
 			<hr>
-			<button class="filterbtn filterbtnactive">Ajouter une photo</button>
+			<button class="filterbtn filterbtnactive" id="add-btn">Ajouter une photo</button>
 			<p class="delete-txt">Supprimer la galerie</p>
 		</div>
 
-		<div class="modal-content-form">
+
+		<div id="modal-content-form" class="displaynone">
 			<h3 class="modal-title">Ajout photo</h3>
 			<div class="mod-add-block">
 				<i class="fa-regular fa-image"></i>
