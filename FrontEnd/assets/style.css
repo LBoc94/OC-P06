@@ -167,7 +167,7 @@ margin: auto;
 #contact label, #login label {
 	margin: 2em 0 1em 0;
 }
-#contact textarea, #login textarea, .mod-add-form input, .mod-add-form select {
+#contact textarea, #login textarea, #mod-add-form input, #mod-add-form select {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
@@ -405,35 +405,43 @@ hr {
 	background-color: #CBD6DC;
 	color: #306685;
 	border: none;
-	margin: 1.5em 0 0.7em 0;
+	margin: 1.5em 0 -1em 0;
 }
 
 .mod-add-block > p {
 	font-size: 10px;
 }
 
-.mod-add-form {
+.testpreview {
+	height: 230px;
+}
+
+#mod-add-form {
 	display: flex;
 	flex-direction: column;
     align-items: stretch;
 	gap: 10px;
 }
 
-.mod-add-form label {
+#mod-add-form label {
 	margin-top: 20px;
 }
 
-.mod-add-form input, select {
+#mod-add-form input, select {
 	height: 50px;
 }
 
-.mod-add-form > hr {
+#mod-add-form > hr {
 	margin-top: 50px;
 	margin-bottom: 10px;
 }
 
 #mod-submit {
 	background-color: #A7A7A7;
+}
+
+#fileInput {
+	opacity: 0;
 }
 
 

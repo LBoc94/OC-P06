@@ -95,19 +95,17 @@
 			<div class="mod-add-block">
 				<i class="fa-regular fa-image"></i>
 
-				<!-- <label for="fileInput" class="filterbtn add-btn">+ Ajouter photo</label>
-				<input type="file" name="fileInput" id="fileInput"> -->
-
-				<button class="filterbtn add-btn">+ Ajouter photo</button>
+				<label for="fileInput" class="filterbtn add-btn fileInput">+ Ajouter photo</label>
+				<input type="file" accept=".jpg, .png" name="fileInput" id="fileInput" required>
 				<p>jpg, png : 4mo max</p>
 			</div>
 
-			<form action="#" method="post" class="mod-add-form">
+			<form action="#" method="post" id="mod-add-form">
 				<label for="title">Titre</label>
-				<input type="text" name="title" id="title">
+				<input type="text" name="title" id="title" required>
 
 				<label for="category">Catégorie</label>
-				<select name="category" id="category">
+				<select name="category" id="category" required>
 					<option value="no-value" disabled selected>Choisir une catégorie</option>
 				</select>
 

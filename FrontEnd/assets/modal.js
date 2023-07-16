@@ -6,6 +6,8 @@ const projectsModifBtn = document.getElementById("projects-modif")
 const modalGallery = document.getElementById("modal-content-gallery")
 const modalAddForm = document.getElementById("modal-content-form")
 const modalBackBtn = document.getElementById("back-modal")
+const modForm = document.getElementById("mod-add-form")
+
 
 
 // BTN MODIFIER GENERATION
@@ -145,7 +147,7 @@ function addModal() {
 }
 
 
-// AFFICHAGE CATEGORIES DEROULANT
+// AFFICHAGE CATEGORIES
 async function getCategories() {
     try {
     const responseCats = await fetch ("http://localhost:5678/api/categories");
@@ -171,8 +173,93 @@ function testcat(categories) {
 
     categories.forEach(categories => {
         let cat = document.createElement("option");
-        cat.value = "${categories.name}";
+        cat.value = `${categories.id}`;
         cat.innerText = `${categories.name}`;
+        // cat.setAttribute("id", `${categories.id}`)
+        // cat.setAttribute("class", "catformdatatest")
         catsForm.appendChild(cat);;
     })
 }
+
+// FETCH POST
+
+async function postWorks(formData) {
+    try {
+        const url = `http://localhost:5678/api/works`;
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${storedToken}`,
+                "Accept": "application/json",
+                // "Content-Type": "multipart/form-data"
+            },
+            body: formData,
+        });
+
+    // REPONSE STATUT OK
+        if (response.status === 201) {
+            console.log("Succès de l'ajout.")
+            
+    // // REPONSE STATUT ERREURS
+        } else if (response.status === 401) {
+            alert("Non autorisé.");
+        } else {
+            alert("Erreur. Veuillez réessayer");
+        }
+    }
+    // CATCH ERREURS
+      catch (error) {
+      alert("Une erreur est survenue. Veuillez réessayer.");
+    }   
+}
+
+
+
+// INPUT IMAGE - PREVIEW + MAXSIZE
+const fileInput = document.getElementById("fileInput")
+fileInput.addEventListener("change", function(e) {
+    
+    if (e.target.files[0].size > 4 * 1024 * 1024) {
+        alert("Fichier trop volumineux.")
+        
+    } else if(e.target.files.length > 0){
+        
+        let previewBlock = document.querySelector(".mod-add-block")
+        previewBlock.innerHTML = ""
+
+        const imgPreview = document.createElement("img")
+        imgPreview.setAttribute("class", "testpreview")
+        imgPreview.src = URL.createObjectURL(e.target.files[0])
+        previewBlock.appendChild(imgPreview)
+    }
+})
+
+
+
+// ENVOI WORK
+function sendWork() {
+
+    modForm.addEventListener("submit", function(e) {
+        e.preventDefault()
+
+        // if (inputtitre !valide || inputcat !valide || file.lenght === 0 ) {
+        //     popUp ("blabla", "red", 3000, dialog)
+        //     return false
+        // }
+////////////////////////
+        let fileInputImg = fileInput.files[0]
+        let title = document.getElementById("title").value
+        let category = document.getElementById("category").value
+        console.log(fileInputImg)
+        console.log(title)
+        console.log(category)
+
+        const formData = new FormData();
+        formData.append("image", fileInputImg);
+        formData.append("title", title);
+        formData.append("category", category)
+        console.log(formData)
+        postWorks(formData)
+    })
+}
+sendWork()
