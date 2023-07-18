@@ -243,10 +243,11 @@ function sendWork() {
         e.preventDefault()
 
         // if (inputtitre !valide || inputcat !valide || file.lenght === 0 ) {
-        //     popUp ("blabla", "red", 3000, dialog)
+        //     popUp ("invalide", "red", 3000, dialog)
         //     return false
         // }
 ////////////////////////
+        
         let fileInputImg = fileInput.files[0]
         let title = document.getElementById("title").value
         let category = document.getElementById("category").value
@@ -260,6 +261,10 @@ function sendWork() {
         formData.append("category", category)
         console.log(formData)
         postWorks(formData)
+        modalClose(e)
+
+        generateGallery()
     })
+
 }
 sendWork()
