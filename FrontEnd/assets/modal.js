@@ -1,9 +1,9 @@
-const modalHeader = document.getElementById("modal-header")
-const modal = document.getElementById("modal")
-const modalAddForm = document.getElementById("modal-content-form")
-const modalBackBtn = document.getElementById("back-modal")
-const modalGallery = document.getElementById("modal-content-gallery")
-const modForm = document.getElementById("mod-add-form")
+const modalHeader = document.querySelector("#modal-header")
+const modal = document.querySelector("#modal")
+const modalAddForm = document.querySelector("#modal-content-form")
+const modalBackBtn = document.querySelector("#back-modal")
+const modalGallery = document.querySelector("#modal-content-gallery")
+const modForm = document.querySelector("#mod-add-form")
 
 
     ////--- CREATION ENVIRONNEMENT MODALE ---////
@@ -18,7 +18,6 @@ function createModifBtn(e, id) {
 
 // GENERATION HEADER
 function createHeaderMod() {
-    let modalHeader = document.getElementById("modal-header")
     modalHeader.innerHTML += `<i class="fa-regular fa-pen-to-square"></i><p>Mode édition</p><button class="headerbtn">publier les changements</button>`
 }
 
@@ -38,7 +37,7 @@ if (storedToken) {
 
 
 // OUVERTURE MODALE
-const projectsModifBtn = document.getElementById("modif-projects")
+const projectsModifBtn = document.querySelector("#modif-projects")
 
 projectsModifBtn.addEventListener("click", (e) => {
     e.preventDefault()
@@ -62,7 +61,7 @@ function modalClose(e) {
 
 
 // GENERATION GALERIE MODALE
-const galleryModal = document.getElementById("modal-gallery");
+const galleryModal = document.querySelector("#modal-gallery");
 
 function generateWorksModal(worksModal) {
 
@@ -179,7 +178,7 @@ async function addCategories() {
 addCategories()
 
 function testcat(categories) {
-    const catsForm = document.getElementById("category")
+    const catsForm = document.querySelector("#category")
 
     categories.forEach(categories => {
         let cat = document.createElement("option");
@@ -226,7 +225,7 @@ async function postWorks(formData) {
 
 
 // INPUT IMAGE - PREVIEW + MAXSIZE
-const fileInput = document.getElementById("fileInput")
+const fileInput = document.querySelector("#fileInput")
 fileInput.addEventListener("change", function(e) {
     
     if (e.target.files[0].size > 4 * 1024 * 1024) {
@@ -247,39 +246,39 @@ fileInput.addEventListener("change", function(e) {
 
 
 // ENVOI WORK
-async function sendWork() {
+//async 
+function sendWork() {
 
-    await getWorks()
+    // await getWorks()
+ 
+     modForm.addEventListener("submit", function(e) {
+         e.preventDefault()
+         let fileInputImg = fileInput.files[0]
+         let title = document.querySelector("#title").value
+         let category = document.querySelector("#category").value
+         console.log(fileInputImg)
+         console.log(title)
+         console.log(category)
+ 
 
-    modForm.addEventListener("submit", function(e) {
-        e.preventDefault()
-
-        // if (inputtitre !valide || inputcat !valide || file.lenght === 0 ) {
-        //     popUp ("invalide", "red", 3000, dialog)
-        //     return false
-        // }
-////////////////////////
-        let fileInputImg = fileInput.files[0]
-        let title = document.getElementById("title").value
-        let category = document.getElementById("category").value
-        console.log(fileInputImg)
-        console.log(title)
-        console.log(category)
-
-        const formData = new FormData();
-        formData.append("image", fileInputImg);
-        formData.append("title", title);
-        formData.append("category", category)
-        console.log(formData)
-        postWorks(formData)
-
-        // gallery.innerHTML = ``
-        // galleryModal.innerHTML=``
-        // generateGallery()
-        // generateGalleryModal()
-        modalClose(e)
-
-    })
-
-}
-sendWork()
+         if(category === "no-value" || title === "" || !fileInput.files[0]){
+            alert("Veuillez renseigner tous les champs.")
+        } else {
+         const formData = new FormData();
+         formData.append("image", fileInputImg);
+         formData.append("title", title);
+         formData.append("category", category)
+         console.log(formData)
+         postWorks(formData)
+ 
+         // gallery.innerHTML = ``
+         // galleryModal.innerHTML=``
+         // generateGallery()
+         // generateGalleryModal()
+         modalClose(e)
+        }
+ 
+     })
+ 
+ }
+ sendWork()
