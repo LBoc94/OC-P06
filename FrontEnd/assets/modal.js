@@ -1,8 +1,5 @@
 const modalHeader = document.getElementById("modal-header")
 const modal = document.getElementById("modal")
-const projetctTitle = document.getElementById("project-title")
-const introPicModif = document.querySelector(".intro-pic")
-const projectsModif = document.querySelector(".projects-header")
 const modalGallery = document.getElementById("modal-content-gallery")
 const modalAddForm = document.getElementById("modal-content-form")
 const modalBackBtn = document.getElementById("back-modal")
@@ -32,9 +29,14 @@ if (storedToken) {
     createHeaderMod()
     modalHeader.classList.remove("displaynone")
 
+    const introPicModif = document.querySelector(".intro-pic")
     createModifBtn(introPicModif, "modif-intro")
+
+    const projectsModif = document.querySelector(".projects-header")
     createModifBtn(projectsModif, "modif-projects")
 }
+
+
 // OUVERTURE MODALE
 const projectsModifBtn = document.getElementById("modif-projects")
 
@@ -74,7 +76,6 @@ function generateWorksModal(worksModal) {
         <button class="moveBtn"><i class="fa-solid fa-arrows-up-down-left-right"></i></button>
         <button class="deleteBtn" id="${workModal.id}" type="submit"><i class="fa-solid fa-trash-can"></i></button>`
     })
-
 }
 
 async function generateGalleryModal() {
