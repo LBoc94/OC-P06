@@ -1,14 +1,16 @@
 const form = document.querySelector("form");
 const email = document.getElementById("email")
 const password = document.getElementById("password")
+const logout = document.getElementById("headerlogin")
 const storedToken = localStorage.token
 
 form.addEventListener("submit", submitForm);
 
+// POST DE L'API   
 async function submitForm(event) {
     event.preventDefault();
 
-    // POST DE L'API   
+    // APPEL API
     try {
         const url = "http://localhost:5678/api/users/login";
         const response = await fetch(url, {
@@ -42,7 +44,6 @@ async function submitForm(event) {
     }
 }
 
-const logout = document.getElementById("headerlogin")
 
 if (storedToken) {
      logout.innerText = "logout"

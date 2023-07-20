@@ -388,6 +388,10 @@ hr {
 	position: relative;
 }
 
+#modal-gallery figure:hover {
+	cursor: pointer;
+}
+
 #modal-gallery img {
 	object-fit: cover;
 	height: 170px;

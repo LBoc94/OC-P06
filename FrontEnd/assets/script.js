@@ -1,6 +1,8 @@
 const storedToken = localStorage.token
+const gallery = document.querySelector(".gallery");
 
-// RECUPERATION API
+
+    ////--- RECUPERATION API ---////
 async function getWorks() {
     try {
     const responseWorks = await fetch ("http://localhost:5678/api/works");
@@ -16,10 +18,8 @@ async function getWorks() {
 }
 
 
-// ---GALLERY---
-// CREATION GALLERY
-const gallery = document.querySelector(".gallery");
-
+    ////--- GALLERY ---////
+// CREATION TRAVAUX
 function generateWorks(works) {
     works.forEach(works => {
         let work = document.createElement("figure");
@@ -28,9 +28,10 @@ function generateWorks(works) {
     })
 }
 
-// AJOUT TRAVAUX GALLERY
+// AJOUT TRAVAUX
 async function generateGallery() {
     let works = await getWorks();
+    // gallery.innerHTML = ``
     generateWorks(works);
 }
 generateGallery()
@@ -54,9 +55,11 @@ async function generateFilters() {
     for (let i = 0; i < categoryName.length; i++) {
     let filterBtn = document.createElement("button");
     filters.appendChild(filterBtn);
-    filterBtn.classList.add("filterbtn");
+    filterBtn.classList.add("btn-base","filterbtn");
     filterBtn.setAttribute("id", categoryName[i]);
     filterBtn.textContent = categoryName[i];
+
+
 
     // GENERATION DES FILTRES AU CLIC
     filterBtn.addEventListener("click", function() {
@@ -69,7 +72,8 @@ async function generateFilters() {
             generateWorks(filteredWorks)
         }       
         
-        // filterBtn.classList.add("filterbtnactive")
+        document.querySelectorAll('.filterbtn').forEach(btn => btn.classList.remove('btnactive'))
+        filterBtn.classList.add("btnactive");
     })
     }
 }

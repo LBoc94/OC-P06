@@ -1,14 +1,14 @@
 const modalHeader = document.getElementById("modal-header")
 const modal = document.getElementById("modal")
-const modalGallery = document.getElementById("modal-content-gallery")
 const modalAddForm = document.getElementById("modal-content-form")
 const modalBackBtn = document.getElementById("back-modal")
+const modalGallery = document.getElementById("modal-content-gallery")
 const modForm = document.getElementById("mod-add-form")
 
 
-////--- CREATION ENVIRONNEMENT MODALE ---////
+    ////--- CREATION ENVIRONNEMENT MODALE ---////
 
-    // GENERATION BTN MODIFIER
+// GENERATION BTN MODIFIER
 function createModifBtn(e, id) {
     let modifBtn = document.createElement("p")
     modifBtn.setAttribute("id", id)
@@ -16,7 +16,7 @@ function createModifBtn(e, id) {
     e.appendChild(modifBtn);
 }
 
-    // GENERATION HEADER
+// GENERATION HEADER
 function createHeaderMod() {
     let modalHeader = document.getElementById("modal-header")
     modalHeader.innerHTML += `<i class="fa-regular fa-pen-to-square"></i><p>Mode édition</p><button class="headerbtn">publier les changements</button>`
@@ -79,7 +79,7 @@ function generateWorksModal(worksModal) {
 }
 
 async function generateGalleryModal() {
-    // galleryModal.innerHTML=""
+    galleryModal.innerHTML=``
     let worksModal = await getWorks();
     generateWorksModal(worksModal)
     deletetest3(worksModal)
@@ -247,7 +247,9 @@ fileInput.addEventListener("change", function(e) {
 
 
 // ENVOI WORK
-function sendWork() {
+async function sendWork() {
+
+    await getWorks()
 
     modForm.addEventListener("submit", function(e) {
         e.preventDefault()
@@ -257,7 +259,6 @@ function sendWork() {
         //     return false
         // }
 ////////////////////////
-        
         let fileInputImg = fileInput.files[0]
         let title = document.getElementById("title").value
         let category = document.getElementById("category").value
@@ -271,10 +272,13 @@ function sendWork() {
         formData.append("category", category)
         console.log(formData)
         postWorks(formData)
+
+        // gallery.innerHTML = ``
+        // galleryModal.innerHTML=``
+        // generateGallery()
+        // generateGalleryModal()
         modalClose(e)
 
-        gallery.innerHTML = ""
-        generateGallery()
     })
 
 }
