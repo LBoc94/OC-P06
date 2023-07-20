@@ -75,12 +75,13 @@
 			<i class="fa-solid fa-xmark icon" id="close-modal"></i>
 		</div>
 
+
 		<div id="modal-content-gallery">
 			<h3 class="modal-title">Galerie photo</h3>
 			<div id="modal-gallery"></div>
 			<hr>
-			<button class="filterbtn filterbtnactive" id="add-btn">Ajouter une photo</button>
-			<p class="delete-txt">Supprimer la galerie</p>
+			<button class="btn-base btnactive" id="add-btn">Ajouter une photo</button>
+			<p id="delete-txt">Supprimer la galerie</p>
 		</div>
 
 
@@ -88,8 +89,7 @@
 			<h3 class="modal-title">Ajout photo</h3>
 			<div class="mod-add-block">
 				<i class="fa-regular fa-image"></i>
-
-				<label for="fileInput" class="filterbtn add-btn fileInput">+ Ajouter photo</label>
+				<label for="fileInput" class="btn-base add-btn fileInput">+ Ajouter photo</label>
 				<input type="file" accept=".jpg, .png" name="fileInput" id="fileInput" required>
 				<p>jpg, png : 4mo max</p>
 			</div>
@@ -97,12 +97,10 @@
 			<form action="#" method="post" id="mod-add-form">
 				<label for="title">Titre</label>
 				<input type="text" name="title" id="title" required>
-
 				<label for="category">Catégorie</label>
 				<select name="category" id="category" required>
 					<option value="no-value" disabled selected>Choisir une catégorie</option>
 				</select>
-
 				<hr>
 				<input type="submit" value="Valider" id="mod-submit">
 			</form>

@@ -196,13 +196,8 @@ footer nav ul {
 }
 
 
-/* MINE */
-
-.filters {
-	text-align: center;
-}
-
-.filterbtn {
+/** INDEX **/
+.btn-base {
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 1em;
@@ -215,12 +210,18 @@ footer nav ul {
 	cursor: pointer;
 }
 
-.filterbtnactive {
+.btnactive {
 	border-style: none;
 	color: white;
 	background-color: #1D6154;
 }
 
+.filters {
+	text-align: center;
+}
+
+
+/** LOGIN **/
 nav a {
 	text-decoration: none;
 	color: inherit;
@@ -230,7 +231,14 @@ nav a {
 	font-weight: bold;
 }
 
-/* MODAL */
+.footer-note {
+	position: fixed;
+    bottom: 40px;
+}
+
+
+/** MODAL **/
+/* header */
 #modal-header {
 	position: sticky;
 	z-index: 2;
@@ -246,11 +254,6 @@ nav a {
 	gap: 10px;
 }
 
-.fa-pen-to-square {
-	color: white;
-    font-size: 15px;
-}
-
 #modal-header p {
 	color: white
 }
@@ -264,6 +267,12 @@ nav a {
 	cursor: pointer;
 }
 
+.fa-pen-to-square {
+	color: white;
+    font-size: 15px;
+}
+
+/* modifier btns */
 #modif-intro {
 	width: 80%;
 	margin: auto;
@@ -293,6 +302,7 @@ nav a {
 	grid-column-start: 3;
 }
 
+/* modal gen */
 .modal {
 	position: fixed;
 	top: 0;
@@ -327,11 +337,11 @@ nav a {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	margin-bottom: 10px;
-	cursor: pointer;
 }
 
 .icon {
 	font-size: 17px;
+	cursor: pointer;
 }
 
 #close-modal {
@@ -344,6 +354,14 @@ nav a {
 	margin-bottom: 45px;
 }
 
+hr {
+	width: 100%;
+	color: #B3B3B3;
+	margin-bottom: 25px;
+}
+
+
+/* modal delete */
 #modal-content-gallery {
 	display: flex;
 	flex-direction: column;
@@ -351,18 +369,12 @@ nav a {
 	margin: 0 10% 20px 10%;
 }
 
-hr {
-	width: 100%;
-	color: #B3B3B3;
-	margin-bottom: 25px;
-}
-
-.delete-txt {
+#delete-txt {
 	color: #D65353;
 	font-size: 12px;
 	margin-top: -15px;
+	cursor: pointer;
 }
-
 
 #modal-gallery {
 	width: 100%;
@@ -402,6 +414,8 @@ hr {
 	right: 32px;
 }
 
+
+/* modal add */
 #modal-content-form {
 	margin: 0 10% 20px 10%;
 }
@@ -468,10 +482,6 @@ hr {
 	opacity: 0;
 }
 
-.footer-note {
-	position: fixed;
-    bottom: 40px;
-}
 
 
 .displaynone {
