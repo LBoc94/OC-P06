@@ -1,34 +1,43 @@
 const modalHeader = document.getElementById("modal-header")
 const modal = document.getElementById("modal")
 const projetctTitle = document.getElementById("project-title")
-const introPic = document.querySelector("figure")
-const projectsModifBtn = document.getElementById("projects-modif")
+const introPicModif = document.querySelector(".intro-pic")
+const projectsModif = document.querySelector(".projects-header")
 const modalGallery = document.getElementById("modal-content-gallery")
 const modalAddForm = document.getElementById("modal-content-form")
 const modalBackBtn = document.getElementById("back-modal")
 const modForm = document.getElementById("mod-add-form")
 
 
+////--- CREATION ENVIRONNEMENT MODALE ---////
 
-// BTN MODIFIER GENERATION
-function createModifBtn(e) {
+    // GENERATION BTN MODIFIER
+function createModifBtn(e, id) {
     let modifBtn = document.createElement("p")
+    modifBtn.setAttribute("id", id)
     modifBtn.innerHTML = `<i class="fa-regular fa-pen-to-square modif-icon"></i>modifier`
-    modifBtn.classList.add("modif-icon")
     e.appendChild(modifBtn);
+}
+
+    // GENERATION HEADER
+function createHeaderMod() {
+    let modalHeader = document.getElementById("modal-header")
+    modalHeader.innerHTML += `<i class="fa-regular fa-pen-to-square"></i><p>Mode édition</p><button class="headerbtn">publier les changements</button>`
 }
 
 // EDITION MODE WHEN LOGGED IN
 if (storedToken) {
-    modalHeader.classList.remove("displaynone")
     filters.classList.add("displaynone")
 
-    createModifBtn(introPic)
-    createModifBtn(projectsModifBtn)
+    createHeaderMod()
+    modalHeader.classList.remove("displaynone")
+
+    createModifBtn(introPicModif, "modif-intro")
+    createModifBtn(projectsModif, "modif-projects")
 }
-
-
 // OUVERTURE MODALE
+const projectsModifBtn = document.getElementById("modif-projects")
+
 projectsModifBtn.addEventListener("click", (e) => {
     e.preventDefault()
     modal.classList.remove("displaynone")
@@ -263,6 +272,7 @@ function sendWork() {
         postWorks(formData)
         modalClose(e)
 
+        gallery.innerHTML = ""
         generateGallery()
     })
 
