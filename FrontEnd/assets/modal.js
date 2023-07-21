@@ -120,6 +120,7 @@ async function deleteFetch(workId) {
 // FONCTION DELETE
 async function deletetest3(worksModal, workId) {
     await deleteFetch(workId)
+    let works = await getWorks()
         const deleteBtns = document.querySelectorAll(".deleteBtn")
         let figureModal = document.querySelectorAll("#modal-gallery figure")
         let figuregallery = document.querySelectorAll(".gallery figure")
@@ -139,10 +140,25 @@ async function deletetest3(worksModal, workId) {
                         console.log("Suppression réussie")
                         deleteFetch(workId)
                         figuretest.remove()
+                        generateGallery()
+
                     } else {
                         console.log("Échec de la supression")
                     }} 
             }))
+        
+
+// SUPPRESSION GALERIE COMPLETE
+            const deleteallbtn = document.querySelector("#delete-txt")
+
+            deleteallbtn.addEventListener("click", () => {
+
+                if (window.confirm("Supprimer toute la galerie ?")){
+                for (let figuretest of figureModal) {
+                    workId = figuretest.id
+                deleteFetch(workId)
+                }
+            }})
 }
 
 
@@ -243,8 +259,6 @@ fileInput.addEventListener("change", function(e) {
     }
 })
 
-
-
 // ENVOI WORK
 //async 
 function sendWork() {
@@ -256,24 +270,27 @@ function sendWork() {
          let fileInputImg = fileInput.files[0]
          let title = document.querySelector("#title").value
          let category = document.querySelector("#category").value
-         console.log(fileInputImg)
-         console.log(title)
-         console.log(category)
+    console.log(fileInputImg)
+    console.log(title)
+    console.log(category)
  
 
          if(category === "no-value" || title === "" || !fileInput.files[0]){
             alert("Veuillez renseigner tous les champs.")
         } else {
+            
+        let submitbtn = document.querySelector("#mod-submit")
+        submitbtn.classList.add("btnactive")
          const formData = new FormData();
          formData.append("image", fileInputImg);
          formData.append("title", title);
          formData.append("category", category)
-         console.log(formData)
+    console.log(formData)
          postWorks(formData)
  
-         // gallery.innerHTML = ``
+        //  gallery.innerHTML = ``
          // galleryModal.innerHTML=``
-         // generateGallery()
+        // generateGallery()
          // generateGalleryModal()
          modalClose(e)
         }
@@ -282,3 +299,4 @@ function sendWork() {
  
  }
  sendWork()
+    
