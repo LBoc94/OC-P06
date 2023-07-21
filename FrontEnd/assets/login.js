@@ -1,7 +1,7 @@
 const form = document.querySelector("form");
-const email = document.getElementById("email")
-const password = document.getElementById("password")
-const logout = document.getElementById("headerlogin")
+const email = document.querySelector("#email")
+const password = document.querySelector("#password")
+const logout = document.querySelector("#headerlogin")
 const storedToken = localStorage.token
 
 form.addEventListener("submit", submitForm);
@@ -51,8 +51,8 @@ if (storedToken) {
 
 // LOGING OUT
 if (logout.innerText === "logout") {
-    logout.addEventListener("click", () => {
+    logout.addEventListener("click", (e) => {
+        e.preventDefault();
         localStorage.removeItem("token")
-        window.location.href = "./index.html";
     })
 }

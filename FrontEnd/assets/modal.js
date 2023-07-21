@@ -5,7 +5,6 @@ const modalBackBtn = document.querySelector("#back-modal")
 const modalGallery = document.querySelector("#modal-content-gallery")
 const modForm = document.querySelector("#mod-add-form")
 
-
     ////--- CREATION ENVIRONNEMENT MODALE ---////
 
 // GENERATION BTN MODIFIER
@@ -118,9 +117,9 @@ async function deleteFetch(workId) {
 
 
 // FONCTION DELETE
-async function deletetest3(worksModal, workId) {
+async function deletetest3(workId) {
     await deleteFetch(workId)
-    let works = await getWorks()
+    await getWorks()
         const deleteBtns = document.querySelectorAll(".deleteBtn")
         let figureModal = document.querySelectorAll("#modal-gallery figure")
         let figuregallery = document.querySelectorAll(".gallery figure")
@@ -155,8 +154,10 @@ async function deletetest3(worksModal, workId) {
 
                 if (window.confirm("Supprimer toute la galerie ?")){
                 for (let figuretest of figureModal) {
-                    workId = figuretest.id
+                workId = figuretest.id
                 deleteFetch(workId)
+                figuretest.remove()
+                generateGallery()
                 }
             }})
 }
@@ -168,7 +169,9 @@ async function deletetest3(worksModal, workId) {
 function addModal() {
     modalGallery.classList.add("displaynone")
     modalAddForm.classList.remove("displaynone")
-    modalBackBtn.classList.add("displaynone")
+    modalBackBtn.classList.remove("displaynone")
+    // modalBackBtn.setAttribute("class", "fa-solid fa-arrow-left icon")
+    console.log(modalBackBtn)
 }
 
 
@@ -265,7 +268,7 @@ function sendWork() {
 
     // await getWorks()
  
-     modForm.addEventListener("submit", function(e) {
+     modForm.addEventListener("submit", async function(e) {
          e.preventDefault()
          let fileInputImg = fileInput.files[0]
          let title = document.querySelector("#title").value
@@ -278,21 +281,22 @@ function sendWork() {
          if(category === "no-value" || title === "" || !fileInput.files[0]){
             alert("Veuillez renseigner tous les champs.")
         } else {
-            
-        let submitbtn = document.querySelector("#mod-submit")
-        submitbtn.classList.add("btnactive")
+        // let submitbtn = document.querySelector("#mod-submit")
+        // submitbtn.classList.add("btnactive")
+
          const formData = new FormData();
          formData.append("image", fileInputImg);
          formData.append("title", title);
          formData.append("category", category)
     console.log(formData)
+
          postWorks(formData)
+         await getWorks()
+         await generateGallery()
+         await generateGalleryModal()
+
  
-        //  gallery.innerHTML = ``
-         // galleryModal.innerHTML=``
-        // generateGallery()
-         // generateGalleryModal()
-         modalClose(e)
+        modalClose(e)
         }
  
      })

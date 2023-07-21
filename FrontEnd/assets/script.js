@@ -1,5 +1,5 @@
 const storedToken = localStorage.token
-const gallery = document.querySelector(".gallery");
+const gallery = document.querySelector("#gallery");
 
 
     ////--- RECUPERATION API ---////
@@ -31,7 +31,7 @@ function generateWorks(works) {
 // AJOUT TRAVAUX
 async function generateGallery() {
     let works = await getWorks();
-    // gallery.innerHTML = ``
+    gallery.innerHTML = ``
     generateWorks(works);
 }
 generateGallery()
@@ -59,8 +59,6 @@ async function generateFilters() {
     filterBtn.setAttribute("id", categoryName[i]);
     filterBtn.textContent = categoryName[i];
 
-
-
     // GENERATION DES FILTRES AU CLIC
     filterBtn.addEventListener("click", function() {
         const filteredWorks = works.filter(work => work.category.name === filterBtn.textContent)
@@ -81,7 +79,7 @@ generateFilters()
 
 
 // LOGING OUT
-const logout = document.getElementById("headerlogin")
+const logout = document.querySelector("#headerlogin")
 
 if (storedToken) {
      logout.innerText = "logout"
