@@ -4,6 +4,8 @@ const modalAddForm = document.querySelector("#modal-content-form")
 const modalGallery = document.querySelector("#modal-content-gallery")
 const modForm = document.querySelector("#mod-add-form")
 
+
+
     ////--- CREATION ENVIRONNEMENT MODALE ---////
 
 // GENERATION BTN MODIFIER
@@ -19,7 +21,7 @@ function createHeaderMod() {
     modalHeader.innerHTML += `<i class="fa-regular fa-pen-to-square"></i><p>Mode édition</p><button class="headerbtn">publier les changements</button>`
 }
 
-// EDITION MODE WHEN LOGGED IN
+// EDITION MODE QUAND LOGGED IN
 if (storedToken) {
     filters.classList.add("displaynone")
 
@@ -34,6 +36,9 @@ if (storedToken) {
 }
 
 
+
+    ////--- MODALE ---////
+
 // OUVERTURE MODALE
 const projectsModifBtn = document.querySelector("#modif-projects")
 
@@ -46,6 +51,7 @@ projectsModifBtn.addEventListener("click", (e) => {
     modal.querySelector("#add-btn").addEventListener("click", addModal)
 })
 
+// FERMETURE MODALE
 function modalClose(e) {
     e.preventDefault()
     modal.classList.add("displaynone")
@@ -56,12 +62,10 @@ function modalClose(e) {
     modal.removeEventListener("click", modalClose)
 }
 
-
-// GENERATION GALERIE MODALE
+// GENERATION TRAVAUX MODALE
 const galleryModal = document.querySelector("#modal-gallery");
 
 function generateWorksModal(worksModal) {
-
     worksModal.forEach(function(workModal) {
         let figureModal = document.createElement("figure");
         figureModal.id = workModal.id;
@@ -74,17 +78,20 @@ function generateWorksModal(worksModal) {
     })
 }
 
+// GENERATION GALERIE MODALE
 async function generateGalleryModal() {
     galleryModal.innerHTML=``
     let worksModal = await getWorks();
     generateWorksModal(worksModal)
-    deletetest3(worksModal)
+    deleteWork(worksModal)
 }
 generateGalleryModal()
 
 
 
-//----- DELETE -----//
+    ////--- DELETE WORKS ---////
+
+//----- FETCH API DELETE -----//
 async function deleteFetch(workId) {
     try {
         const url = `http://localhost:5678/api/works/${workId}`;
@@ -98,8 +105,7 @@ async function deleteFetch(workId) {
 
     // REPONSE STATUT OK
         if (response.status === 200) {
-            console.log("test fetch delete")
-            
+            console.log("appel réussi")
     // // REPONSE STATUT ERREURS
         } else if (response.status === 401) {
             alert("Unauthorized.");
@@ -113,57 +119,47 @@ async function deleteFetch(workId) {
     }   
 }
 
-
 // FONCTION DELETE
-async function deletetest3(workId) {
+async function deleteWork(workId) {
     await deleteFetch(workId)
     await getWorks()
-        const deleteBtns = document.querySelectorAll(".deleteBtn")
-        let figureModal = document.querySelectorAll("#modal-gallery figure")
-        let figuregallery = document.querySelectorAll(".gallery figure")
-        console.log(figuregallery)
-
+    const deleteBtns = document.querySelectorAll(".deleteBtn")
+    let figureModal = document.querySelectorAll("#modal-gallery figure")
 
         deleteBtns.forEach((deleteBtn) =>
-            deleteBtn.addEventListener("click", () => {
-                console.log(deleteBtn.id)
-        
+            deleteBtn.addEventListener("click", () => {        
                 let getId = deleteBtn.id
                 workId = getId
-                console.log(workId)
 
-                for (let figuretest of figureModal) {
-                    if(deleteBtn.id === figuretest.id) {
+                for (let figure of figureModal) {
+                    if(deleteBtn.id === figure.id) {
                         console.log("Suppression réussie")
                         deleteFetch(workId)
-                        figuretest.remove()
+                        figure.remove()
                         generateGallery()
-
-                    } else {
-                        console.log("Échec de la supression")
-                    }} 
-            }))
+                    }}
+            })
+        )
         
 
-// SUPPRESSION GALERIE COMPLETE
-            const deleteallbtn = document.querySelector("#delete-txt")
+    // SUPPRESSION GALERIE COMPLETE
+    const deleteAllBtn = document.querySelector("#delete-txt")
 
-            deleteallbtn.addEventListener("click", () => {
-
-                if (window.confirm("Supprimer toute la galerie ?")){
-                for (let figuretest of figureModal) {
-                workId = figuretest.id
-                deleteFetch(workId)
-                figuretest.remove()
-                generateGallery()
-                }
-            }})
+    deleteAllBtn.addEventListener("click", () => {
+        if (window.confirm("Supprimer toute la galerie ?")){
+            for (let figure of figureModal) {
+            workId = figure.id
+            deleteFetch(workId)
+            figure.remove()
+            generateGallery()
+            }}
+    })
 }
 
 
+    ////--- ADD WORKS ---////
 
-//----- ADD -----//
-
+// AFFICHAGE ADD MODAL
 function addModal() {
     modalGallery.classList.add("displaynone")
     modalAddForm.classList.remove("displaynone")
@@ -174,8 +170,7 @@ function addModal() {
     })
 }
 
-
-// AFFICHAGE CATEGORIES
+// FETCH API CATEGORIES
 async function getCategories() {
     try {
     const responseCats = await fetch ("http://localhost:5678/api/categories");
@@ -190,27 +185,26 @@ async function getCategories() {
     }        
 }
 
-async function addCategories() {
+// GENERATION OPTIONS CATEGORIES DANS FORM
+async function sendCategories() {
     let categories = await getCategories()
-    testcat(categories)
+    addCategories(categories)
 }
-addCategories()
+sendCategories()
 
-function testcat(categories) {
+function addCategories(categories) {
     const catsForm = document.querySelector("#category")
 
     categories.forEach(categories => {
-        let cat = document.createElement("option");
-        cat.value = `${categories.id}`;
-        cat.innerText = `${categories.name}`;
-        // cat.setAttribute("id", `${categories.id}`)
-        // cat.setAttribute("class", "catformdatatest")
-        catsForm.appendChild(cat);;
+        let category = document.createElement("option");
+        category.value = `${categories.id}`;
+        category.innerText = `${categories.name}`;
+        catsForm.appendChild(category);;
     })
 }
 
-// FETCH POST
 
+// FETCH API POST
 async function postWorks(formData) {
     try {
         const url = `http://localhost:5678/api/works`;
@@ -219,16 +213,15 @@ async function postWorks(formData) {
             headers: {
                 "Authorization": `Bearer ${storedToken}`,
                 "Accept": "application/json",
-                // "Content-Type": "multipart/form-data"
             },
             body: formData,
         });
 
     // REPONSE STATUT OK
         if (response.status === 201) {
-            console.log("Succès de l'ajout.")
+            console.log("Succès de l'ajout")
             
-    // // REPONSE STATUT ERREURS
+    // REPONSE STATUT ERREURS
         } else if (response.status === 401) {
             alert("Non autorisé.");
         } else {
@@ -241,97 +234,67 @@ async function postWorks(formData) {
     }   
 }
 
-
-
-// INPUT IMAGE - PREVIEW + MAXSIZE
+// INPUT IMAGE PREVIEW + MAXSIZE
 const fileInput = document.querySelector("#fileInput")
 fileInput.addEventListener("change", function(e) {
     
     if (e.target.files[0].size > 4 * 1024 * 1024) {
         alert("Fichier trop volumineux.")
-        
     } else if(e.target.files.length > 0){
-        
         let previewBlock = document.querySelector(".mod-add-block")
-        // previewBlock.innerHTML = ""
-
         const imgPreview = document.createElement("img")
-        imgPreview.setAttribute("class", "testpreview")
+        imgPreview.setAttribute("class", "img-preview")
         imgPreview.src = URL.createObjectURL(e.target.files[0])
         previewBlock.appendChild(imgPreview)
     }
 })
 
+// INPUT BUTTON COLOR CHANGE
+function inputBtnColorChange() {
+    let fileInputImg = fileInput.files[0]
+    let title = document.querySelector("#title").value
+    let category = document.querySelector("#category").value
+    let btnchange = document.querySelector("#mod-submit")
+
+    if (fileInputImg && title !== `` && category !== `no-value`) {
+        btnchange.style.backgroundColor = "#1D6154"
+    }
+}
+document.querySelector("#title").addEventListener("input", inputBtnColorChange)
+document.querySelector("#category").addEventListener("change", inputBtnColorChange)
+document.querySelector("#fileInput").addEventListener("change", inputBtnColorChange)
+
 // ENVOI WORK
-//async 
 function sendWork() {
 
-    // await getWorks()
- 
      modForm.addEventListener("submit", async function(e) {
-         e.preventDefault()
-         let fileInputImg = fileInput.files[0]
-         let title = document.querySelector("#title").value
-         let category = document.querySelector("#category").value
-    console.log(fileInputImg)
-    console.log(title)
-    console.log(category)
- 
+        e.preventDefault()
+        let fileInputImg = fileInput.files[0]
+        let title = document.querySelector("#title").value
+        let category = document.querySelector("#category").value
 
-         if(category === "no-value" || title === "" || !fileInput.files[0]){
+        if(category === "no-value" || title === "" || !fileInput.files[0]){
             alert("Veuillez renseigner tous les champs.")
         } else {
-        // let submitbtn = document.querySelector("#mod-submit")
-        // submitbtn.classList.add("btnactive")
+        const formData = new FormData();
+        formData.append("image", fileInputImg);
+        formData.append("title", title);
+        formData.append("category", category)
 
-         const formData = new FormData();
-         formData.append("image", fileInputImg);
-         formData.append("title", title);
-         formData.append("category", category)
-    console.log(formData)
-
-         postWorks(formData)
-         await getWorks()
-         await generateGallery()
-         await generateGalleryModal()
-
- 
+        postWorks(formData)
+        await getWorks()
+        await generateGallery()
+        await generateGalleryModal()
         modalClose(e)
-
-        testreset()
-
-        // modForm.reset()
-        // fileInput.src = ""
+        formReset()
         }
- 
      })
  
  }
 sendWork()
 
-
-function testreset() {
+// FORM RESET
+function formReset() {
     modForm.reset()
-    document.querySelector(".testpreview").src = ""
+    document.querySelector(".img-preview").src = ""
 }
-    
-
-function testbtnchange() {
-    let fileInputImg = fileInput.files[0]
-    let title = document.querySelector("#title").value
-    let category = document.querySelector("#category").value
-
-    let btnchange = document.querySelector("#mod-submit")
-
-
-    if (fileInputImg && title !== `` && category !== `no-value`) {
-        console.log("euh")
-        btnchange.style.backgroundColor = "#1D6154"
-    } else {
-        btnchange.style.backgroundColor = "#A7A7A7"
-    }
-}
-
-document.querySelector("#title").addEventListener("input", testbtnchange)
-document.querySelector("#category").addEventListener("change", testbtnchange)
-document.querySelector("#fileInput").addEventListener("change", testbtnchange)

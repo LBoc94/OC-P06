@@ -59,7 +59,7 @@ async function generateFilters() {
     filterBtn.setAttribute("id", categoryName[i]);
     filterBtn.textContent = categoryName[i];
 
-    // GENERATION DES FILTRES AU CLIC
+    // TRAVAUX FILTRÉS AU CLIC
     filterBtn.addEventListener("click", function() {
         const filteredWorks = works.filter(work => work.category.name === filterBtn.textContent)
 
@@ -78,14 +78,12 @@ async function generateFilters() {
 generateFilters()
 
 
-// LOGING OUT
+// LOG OUT
 const logout = document.querySelector("#headerlogin")
 
 if (storedToken) {
-     logout.innerText = "logout"
-}
-
-if (logout.innerText === "logout") {
+    logout.innerText = "logout"
+    
     logout.addEventListener("click", () => {
         localStorage.removeItem("token")
         window.location.href = "./index.html";

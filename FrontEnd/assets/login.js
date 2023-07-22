@@ -43,12 +43,3 @@ async function submitForm(event) {
       alert("Une erreur est survenue lors de la connexion. Veuillez réessayer.");
     }
 }
-
-if (storedToken) {
-     logout.innerText = "logout"
-     logout.addEventListener("click", (e) => {
-        e.preventDefault();
-        localStorage.removeItem("token")
-        window.location.href = "./index.html"
-    })
-}
