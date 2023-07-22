@@ -1,7 +1,6 @@
 const modalHeader = document.querySelector("#modal-header")
 const modal = document.querySelector("#modal")
 const modalAddForm = document.querySelector("#modal-content-form")
-const modalBackBtn = document.querySelector("#back-modal")
 const modalGallery = document.querySelector("#modal-content-gallery")
 const modForm = document.querySelector("#mod-add-form")
 
@@ -169,9 +168,7 @@ async function deletetest3(workId) {
 function addModal() {
     modalGallery.classList.add("displaynone")
     modalAddForm.classList.remove("displaynone")
-    modalBackBtn.classList.remove("displaynone")
-    // modalBackBtn.setAttribute("class", "fa-solid fa-arrow-left icon")
-    console.log(modalBackBtn)
+    document.getElementById("back-modal").classList.remove("displaynone")
 }
 
 
