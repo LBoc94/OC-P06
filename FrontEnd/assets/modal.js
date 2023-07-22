@@ -253,7 +253,7 @@ fileInput.addEventListener("change", function(e) {
     } else if(e.target.files.length > 0){
         
         let previewBlock = document.querySelector(".mod-add-block")
-        previewBlock.innerHTML = ""
+        // previewBlock.innerHTML = ""
 
         const imgPreview = document.createElement("img")
         imgPreview.setAttribute("class", "testpreview")
@@ -297,10 +297,41 @@ function sendWork() {
 
  
         modalClose(e)
+
+        testreset()
+
+        // modForm.reset()
+        // fileInput.src = ""
         }
  
      })
  
  }
- sendWork()
+sendWork()
+
+
+function testreset() {
+    modForm.reset()
+    document.querySelector(".testpreview").src = ""
+}
     
+
+function testbtnchange() {
+    let fileInputImg = fileInput.files[0]
+    let title = document.querySelector("#title").value
+    let category = document.querySelector("#category").value
+
+    let btnchange = document.querySelector("#mod-submit")
+
+
+    if (fileInputImg && title !== `` && category !== `no-value`) {
+        console.log("euh")
+        btnchange.style.backgroundColor = "#1D6154"
+    } else {
+        btnchange.style.backgroundColor = "#A7A7A7"
+    }
+}
+
+document.querySelector("#title").addEventListener("input", testbtnchange)
+document.querySelector("#category").addEventListener("change", testbtnchange)
+document.querySelector("#fileInput").addEventListener("change", testbtnchange)
