@@ -50,7 +50,6 @@ function modalClose(e) {
     e.preventDefault()
     modal.classList.add("displaynone")
     modalAddForm.classList.add("displaynone")
-    modalBackBtn.classList.add("displaynone")
     modalGallery.classList.remove("displaynone")
     modal.querySelector("#close-modal").removeEventListener("click", modalClose)
     modal.querySelector(".modal-overlay").removeEventListener("click", modalClose)
@@ -168,7 +167,11 @@ async function deletetest3(workId) {
 function addModal() {
     modalGallery.classList.add("displaynone")
     modalAddForm.classList.remove("displaynone")
-    document.getElementById("back-modal").classList.remove("displaynone")
+
+    document.getElementById("back-modal").addEventListener("click", () => {
+        modalGallery.classList.remove("displaynone")
+        modalAddForm.classList.add("displaynone")
+    })
 }
 
 

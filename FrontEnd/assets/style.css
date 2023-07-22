@@ -342,25 +342,21 @@ nav a {
 	background-color: white;
 }
 
-.modal-icons {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	margin-bottom: 10px;
-}
-
 .icon {
 	font-size: 17px;
 	cursor: pointer;
 }
 
 #close-modal {
-	justify-self: end;
-    grid-column-start: 2;
+	position: absolute;
+    top: 25px;
+    right: 25px;
 }
 
 .modal-title {
 	font-size: 26px;
 	margin-bottom: 45px;
+	margin-top: 40px;
 }
 
 hr {
@@ -434,6 +430,12 @@ hr {
 }
 
 /* modal add */
+#back-modal {
+	position: absolute;
+    top: 25px;
+    left: 25px;
+}
+
 #modal-content-form {
 	margin: 0 10% 20px 10%;
 }
