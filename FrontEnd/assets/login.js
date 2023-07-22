@@ -44,15 +44,11 @@ async function submitForm(event) {
     }
 }
 
-
 if (storedToken) {
      logout.innerText = "logout"
-}
-
-// LOGING OUT
-if (logout.innerText === "logout") {
-    logout.addEventListener("click", (e) => {
+     logout.addEventListener("click", (e) => {
         e.preventDefault();
         localStorage.removeItem("token")
+        window.location.href = "./index.html"
     })
 }
