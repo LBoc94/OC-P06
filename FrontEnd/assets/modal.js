@@ -146,14 +146,17 @@ async function deleteWork(workId) {
     const deleteAllBtn = document.querySelector("#delete-txt")
 
     deleteAllBtn.addEventListener("click", () => {
-        if (window.confirm("Supprimer toute la galerie ?")){
+        if (window.confirm("Supprimer toute la galerie ?")) {
             for (let figure of figureModal) {
-            workId = figure.id
-            deleteFetch(workId)
-            figure.remove()
+                workId = figure.id;
+                deleteFetch(workId);
+                figure.remove();
+            }
+
+            figureModal = [];
             generateGallery()
-            }}
-    })
+        }
+    });
 }
 
 

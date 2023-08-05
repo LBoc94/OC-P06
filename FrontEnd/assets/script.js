@@ -84,7 +84,8 @@ const logout = document.querySelector("#headerlogin")
 if (storedToken) {
     logout.innerText = "logout"
     
-    logout.addEventListener("click", () => {
+    logout.addEventListener("click", (event) => {
+        event.preventDefault();
         localStorage.removeItem("token")
         window.location.href = "./index.html";
     })
