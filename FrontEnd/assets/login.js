@@ -33,7 +33,7 @@ async function submitForm(event) {
 
     // REPONSE STATUT ERREURS
         } else if (response.status === 401) {
-            alert("E-mail ou mot de passe incorrect.");
+            alert("Erreur dans l’identifiant ou le mot de passe.");
         } else if (response.status === 404) {
             alert("Utilisateur non trouvé.");
         }
